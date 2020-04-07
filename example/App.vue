@@ -1,7 +1,9 @@
 <template>
   <div class="app">
-    {{ message }}
-    <lin-button>11112</lin-button>
+    <lin-button size="mini">提交</lin-button>
+    <lin-button size="medium">提交</lin-button>
+    <lin-button size="large">提交</lin-button>
+    <lin-button>提交</lin-button>
   </div>
 </template>
 

@@ -3,14 +3,29 @@
     class="lin-button"
     :class="btnClass"
   >
-     <i :class="icon" v-if="icon"></i>
+    <i :class="icon" v-if="icon"></i>
     <slot></slot>
   </button>
 </template>
 
-<script>
+<script lang="ts">
+  import Vue from 'vue'
+  import { computed, watch, onMounted, defineComponent } from '@vue/composition-api'
+  import VueCompositionApi from '@vue/composition-api'
+  Vue.use(VueCompositionApi)
+  
   const COMPONENT_NAME = 'lin-button';
-  export default {
+
+  interface Props {
+    name: string,
+    disabled: boolean,
+    type: string,
+    size: string,
+    plain: string,
+    shape: string
+  }
+
+  export default defineComponent({
     name: COMPONENT_NAME,
     props: {
       icon: {
@@ -39,15 +54,17 @@
         default: 'circle'
       }
     },
-    computed: {
-      btnClass() {
-        return {
-          [`lin-button-size-${this.size}`]: true,
-          [`lin-button-type-${this.type}`]: true
-        }
+    setup(props: Props, context: any) {
+      const btnClass = computed(() => ({
+        [`lin-button-size-${props.size}`]: true,
+        [`lin-button-type-${props.type}`]: true
+      }))
+
+      return {
+        btnClass
       }
     }
-  }
+  })
 </script>
 
 <style lang="less">

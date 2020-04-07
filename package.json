@@ -1,9 +1,9 @@
 {
   "name": "lin-vue-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "lin-ui-app",
-  "main": "lib/index.js",
-  "module": "src/index.js",
+  "module": "lib/index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev-server": "node ./build/dev-server",
     "build": "node build/build.js"
@@ -24,10 +24,14 @@
     "ora": "^4.0.3",
     "postcss-loader": "^3.0.0",
     "shelljs": "^0.8.3",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.0.0",
     "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
     "vue-loader": "^15.9.1",
+    "vue-property-decorator": "^8.4.1",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.42.1",
     "webpack-bundle-analyzer": "^3.6.1",
@@ -42,7 +46,8 @@
     "iOS >= 8"
   ],
   "dependencies": {
-    "@babel/polyfill": "^7.8.7"
+    "@babel/polyfill": "^7.8.7",
+    "@vue/composition-api": "^0.5.0"
   },
   "files": [
     "src",
