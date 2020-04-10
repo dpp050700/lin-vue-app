@@ -11,7 +11,7 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-const allSource = [resolve('src'), resolve('example')]
+const allSource = [resolve('src'), resolve('example'), resolve('document')]
 
 module.exports = {
   output: {
@@ -53,6 +53,11 @@ module.exports = {
         loader: 'ts-loader',
         options: { appendTsSuffixTo: [/\.vue$/] }
       },
+      // {
+      //   test: /\.md$/,
+      //   include: resolve('document'),
+      //   loader: 'vue-markdown-loader',
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -70,6 +75,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.md$/,
+        loader: 'vue-markdown-loader'
       }
     ]
   },
