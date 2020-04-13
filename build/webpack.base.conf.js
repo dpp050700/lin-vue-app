@@ -78,7 +78,14 @@ module.exports = {
       },
       {
         test: /\.md$/,
-        loader: 'vue-markdown-loader'
+        use: [
+          'vue-loader',
+          '@vant/markdown-loader'
+        ]
+        // loader: 'vue-markdown-loader',
+        // options: {
+        //   preventExtract: true
+        // }
       }
     ]
   },
