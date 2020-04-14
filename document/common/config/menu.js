@@ -6,21 +6,17 @@ const menuConfig = {
       subList: {
         introduction: "Introduction",
         quickStart: "QuickStart",
-        Changelog: "Changelog",
+        changelog: "Changelog",
         theme: 'Custom Theme',
         internationalization : 'Internationalization'
       }
     },
     components: {
-      name: "Components",
+      name: "Basic",
       angle: "02",
       subList: {
-        basic: {
-          name: "Basic",
-          subList: {
-            button: "Button",
-          }
-        }
+        button: "Button",
+        icon: "Icon"
       }
     },
   },
@@ -37,15 +33,11 @@ const menuConfig = {
       }
     },
     components: {
-      name: "组件",
+      name: "基础组件",
       angle: "02",
       subList: {
-        basic: {
-          name: "基础",
-          subList: {
-            button: "Button",
-          }
-        }
+        button: '按钮 Button',
+        icon: '图标 Icon'
       }
     },
   }

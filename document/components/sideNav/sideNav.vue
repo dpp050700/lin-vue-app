@@ -1,10 +1,15 @@
 <template>
   <ul class="nav-ul">
-    <li class="nav-li" v-for="(item, key) in list" :key="key" :class="{'nav-li-open': item.isOpend, 'nav-li-active': item.isActived}">
+    <li 
+      class="nav-li" 
+      v-for="(item, key) in list" 
+      :key="key" 
+      :class="{'nav-li-open': item.isOpend, 'nav-li-active': item.isActived}"
+    >
       <template v-if="item.name">
-        <div class="nav-name" @click="open(item)">
+        <div class="nav-name" @click="open(item, key)" >
           {{item.name}}
-          <div v-if="item.angle" class="arrow" ></div>
+          <span v-if="item.angle" class="arrow" ></span>
         </div>
         <side-nav :list="item.subList"></side-nav>
       </template>
@@ -12,14 +17,16 @@
         active-class="nav-active"
         :to="{path: key}"
         v-else
-      >{{item}}</router-link>
+      >
+        {{item}}
+      </router-link>
     </li>
   </ul>
 </template>
 
 <script lang="ts">
   interface Props {
-    list: object
+    list: any
   }
   import { computed, watch, onMounted, defineComponent } from '@vue/composition-api'
   
@@ -32,10 +39,15 @@
       }
     },
     setup(props: Props, context: any) {
-      const open = (item: any) => {
+      const open = (item: any, key: string) => {
         let isOpend = item.isOpend
-        context.root.$set(item, 'isOpend', !isOpend)
-        console.log(context)
+        Object.keys(props.list).forEach(_key => {
+            if(key === _key) {
+              context.root.$set(props.list[_key], 'isOpend', !isOpend)
+            } else {
+              context.root.$set(props.list[_key], 'isOpend', false)
+            }
+        })
       }
       return {
         open
@@ -44,66 +56,64 @@
   })
 </script>
 
-<style lang="less">
+<style lang="less" scope>
   .nav-ul{
     .nav-li{
       position: relative;
       overflow: hidden;
       .nav-name{
-        font-size: 24px;
-        border-bottom: 1px solid #e3e3e3;
-        padding: 15px 0 15px 30px;
-        margin-left: 30px;
-        margin-right: 30px;
+        color: #45526b;
+        transition: color .15s ease;
         cursor: pointer;
+        font-size: 14px;
+        padding: 0 40px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 5px;
         position: relative;
+        font-weight: 400;
       }
       .arrow{
-        width: 10px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
         position: absolute;
-        top: 23px;
-        right: 16px;
+        border-top: 1px solid #3683d6;
+        border-right: 1px solid #3683d6;
+        transform: rotate(135deg);
+        top: 35%;
+        left: 17px;
         transition: all .3s;
-        &::before, &::after{
-          width: 0;
-          height: 0;
-          content: "";
-          border: 5px solid transparent;
-          border-top: 5px solid #fff;
-          position: absolute;
-        }
-        &::before{
-          border-top-color: #333;
-          top: 2px
-        }
       }
       & >.nav-ul {
         display: none;
         .nav-li{
-          text-indent: 60px;
+          padding-left: 50px;
           line-height: 30px;
-          .nav-li{
-            text-indent: 80px;
-          }
-          .nav-name{
-            font-size: 1.125em;
-            border: none;
-            padding: 0;
-            margin: 0;
-            line-height: 50px;
-            color: #969799;
-          }
           a{
-            display: block;
-            padding: 5px 0px;
-            box-sizing: border-box;
-            color: #666;
+            color: #45526b;
+            font-size: 13px;
           }
         }
       }
     }
     .nav-li-open{
+      .nav-name {
+        color: #3683d6;
+        background: #e4f1ff;
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
+        .arrow{
+          color: #3683d6;
+          transform:rotate(-45deg) ;
+          top: 45%;
+          margin-bottom: -2px;
+        }
+      }
       .nav-ul{
         display: block;
       }

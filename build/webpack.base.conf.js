@@ -63,6 +63,7 @@ module.exports = {
         loader: 'url-loader',
         include: allSource,
         options: {
+          esModule:false,
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }

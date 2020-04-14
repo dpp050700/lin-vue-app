@@ -3,11 +3,8 @@
     <div class="nav-list-wrapper">
       <side-list :nav-list="navList"></side-list>
     </div>
-    <!-- <div>
-      
-    </div> -->
-    <!-- <Button></Button> -->
     <router-view class="page-doc md-body"></router-view>
+    <example></example>
   </div>
 </template>
 
@@ -25,7 +22,7 @@
   import menuConfig from '../../common/config/menu'
   import {LANG_KEY} from '../../common/config/index'
   import SideList from '../sideList/sideList.vue'
-  // import Button from '../docs/zh-CN/button.md';
+  import Example from '../example/example.vue';
   import { computed, watch, onMounted, defineComponent,reactive, toRefs } from '@vue/composition-api'
   
   export default defineComponent({
@@ -38,7 +35,7 @@
     },
     components: {
       SideList,
-      // Button
+      Example
     },
     setup(props: Props, context: any) {
       console.log(props)
@@ -60,9 +57,11 @@
     height: 100%;
     box-sizing: border-box;
     .nav-list-wrapper{
-      width: 279px;
+      width: 250px;
       height: 100%;
       border-right: 1px solid #e3e3e3;
+      box-sizing: border-box;
+      padding-top: 20px;
     }
     .page-doc{
       height: 100%;

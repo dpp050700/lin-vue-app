@@ -37,10 +37,5 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    .nav-list-wrapper{
-      width: 279px;
-      height: 100%;
-      border-right: 1px solid #e3e3e3;
-    }
   }
 </style>

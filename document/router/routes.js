@@ -17,7 +17,7 @@ Object.keys(menus).forEach(lang => {
     getSubList(groups[name]).forEach((key) => {
       docsChildrenRoute.push({
         path: key,
-        component: () => import(`../components/docs/${lang}/button.md`)
+        component: () => import(`../components/docs/${lang}/${key}.md`)
       })
     })
   })
