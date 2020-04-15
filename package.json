@@ -5,9 +5,9 @@
   "module": "lib/index.js",
   "main": "src/index.js",
   "scripts": {
-    "dev-server": "node ./build/dev-server",
+    "dev": "node ./build/dev-server",
     "build": "node build/build.js",
-    "doc-dev": "node ./build/document/dev-server.js"
+    "doc-dev": "npm run dev & node ./build/document/dev-server.js"
   },
   "author": "",
   "license": "ISC",

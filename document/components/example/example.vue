@@ -10,6 +10,7 @@
 
 <script lang="ts">
   import { computed, watch, onMounted, defineComponent } from '@vue/composition-api'
+  import { baseUrl } from '../../common/js/utils'
   import Lang from '../lang/lang.vue'
   export default defineComponent({
     name: 'APP',
@@ -17,7 +18,9 @@
       Lang
     },
     setup(props: {}, context: any) {
-      const ifrSrc = computed(() => 'https://didi.github.io/cube-ui/example/#/introduction')
+      const ifrSrc = computed(() => {
+        return `${baseUrl}`
+      })
 
       return {
         ifrSrc
@@ -32,12 +35,8 @@
       position: relative;
       width: 330px;
       height: 645px;
-      // top: 50%;
-      // -webkit-transform: translateY(-50%);
-      // transform: translateY(-50%);
       margin: 0 56px 0 26px;
       background: url(/document/components/example/iphoneX.png);
-      // background: url('./iphoneX.png') no-repeat center 0;
       background-size: 100%;
       .mofang-demo{
         position: absolute;
