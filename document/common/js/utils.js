@@ -20,7 +20,7 @@ export function getCurrentLang() {
   return defaultLang
 }
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://didi.github.io/cube-ui/example/#/' : `http://${window.location.hostname}:8081/#/`
+const baseUrl = process.env.NODE_ENV === 'production' ? '' : `http://${window.location.hostname}:8081/#/`
 
 export {
   baseUrl

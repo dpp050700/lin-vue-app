@@ -3,7 +3,7 @@
     class="lin-button"
     :class="btnClass"
   >
-    <i :class="icon" v-if="icon"></i>
+    <!-- <i :class="icon" v-if="icon"></i> -->
     <slot></slot>
   </button>
 </template>
@@ -70,16 +70,17 @@
 <style lang="less">
   @import "../../common/styles/variable.less";
   .lin-button{
-    position: relative;
+    position: relative; 
     display: inline-block;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     text-align: center;
+    border: 1px solid #cccccc;
     // border-radius: @button-border-radius;
     // transition: opacity @animation-duration-fast;
     -webkit-appearance: none;
-    -webkit-text-size-adjust: 100%;
+    // -webkit-text-size-adjust: 100%;
     &-size-mini{
       width: @button-mini-min-width;
       height: @button-mini-height;
@@ -105,7 +106,7 @@
       font-size: @button-long-font-size;
     }
     &-type-primary{
-      background: @btn-primary-bgc;
+      // background: @btn-primary-bgc;
     }
   }
 </style>
