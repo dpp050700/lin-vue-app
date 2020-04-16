@@ -1,6 +1,8 @@
 <template>
   <ComponentPage title="icon">
-    <div slot="content">Icon</div>
+    <div slot="content">
+      <lin-icon name="edit"></lin-icon>
+    </div>
   </ComponentPage>
 </template>
 

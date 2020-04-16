@@ -1,12 +1,14 @@
 import {
   Style,
-  Button
+  Button,
+  Icon
 } from './modules'
 import { processComponentName } from './common/helpers/utils'
 
 const components = [
   // basic
-  Button
+  Button,
+  Icon
 ]
 
 function install(Vue) {

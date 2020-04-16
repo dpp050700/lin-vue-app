@@ -33,8 +33,8 @@
   .page-example{
     .example-wrapper{
       position: relative;
-      width: 330px;
-      height: 645px;
+      width: 375px;
+      height: 730px;
       margin: 0 56px 0 26px;
       background: url(/document/components/example/iphoneX.png);
       background-size: 100%;

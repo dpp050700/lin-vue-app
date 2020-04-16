@@ -3,7 +3,7 @@
     class="lin-button"
     :class="btnClass"
   >
-    <!-- <i :class="icon" v-if="icon"></i> -->
+    <i :class="icon" v-if="icon"></i>
     <slot></slot>
   </button>
 </template>
@@ -36,14 +36,15 @@
         type: Boolean,
         default: false
       },
+      // default primary success danger warning info
       type: {
         type: String,
-        default: 'primary'
+        default: 'default'
       },
       // mini,medium,large,long
       size: {
         type: String,
-        default: 'long'
+        default: 'large'
       },
       plain: {
         type: Boolean,
@@ -56,8 +57,10 @@
     },
     setup(props: Props, context: any) {
       const btnClass = computed(() => ({
-        [`lin-button-size-${props.size}`]: true,
-        [`lin-button-type-${props.type}`]: true
+        [`lin-button-${props.size}`]: true,
+        [`lin-button-${props.type}`]: true,
+        'lin-button-disabled': props.disabled,
+        'lin-button-plain': props.plain
       }))
 
       return {
@@ -69,44 +72,120 @@
 
 <style lang="less">
   @import "../../common/styles/variable.less";
-  .lin-button{
+  // prefix class
+  @button-prefix-cls: ~'@{lin-prefix}-button';
+  .@{button-prefix-cls}{
     position: relative; 
     display: inline-block;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     text-align: center;
-    border: 1px solid #cccccc;
-    // border-radius: @button-border-radius;
-    // transition: opacity @animation-duration-fast;
-    -webkit-appearance: none;
-    // -webkit-text-size-adjust: 100%;
-    &-size-mini{
+    outline: none;
+    cursor: pointer;
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background-color: @btn-primary-active-bgc;
+      border: inherit;
+      border-color: @btn-primary-active-bgc;
+      border-radius: inherit;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      content: ' ';
+    }
+    &-disabled {
+      &::before {
+        display: none;
+      }
+    }
+    &:active::before{
+      opacity: 0.1;
+    }
+    &-mini{
       width: @button-mini-min-width;
       height: @button-mini-height;
       line-height: @button-mini-line-height;
       font-size: @button-mini-font-size;
     }
-    &-size-medium{
+    &-medium{
      width: @button-medium-min-width;
       height: @button-medium-height;
       line-height: @button-medium-line-height;
       font-size: @button-medium-font-size;
     }
-    &-size-large{
+    &-large{
       width: @button-large-min-width;
       height: @button-large-height;
       line-height: @button-large-line-height;
       font-size: @button-large-font-size;
     }
-    &-size-long{
+    &-long{
       width: @button-long-width;
       height: @button-long-height;
       line-height: @button-long-line-height;
       font-size: @button-long-font-size;
     }
-    &-type-primary{
-      // background: @btn-primary-bgc;
+    &-default{
+      background: @btn-default-bgc;
+      border: 1px solid @btn-default-border-color;
+      color: @btn-default-color;
     }
+    &-primary{
+      background: @btn-primary-bgc;
+      border: 1px solid @btn-primary-border-color;
+      color: @btn-primary-color;
+    }
+    &-success{
+      background: @btn-success-bgc;
+      border: 1px solid @btn-success-bgc;
+      color: @btn-success-color;
+    }
+    &-info{
+      background: @btn-info-bgc;
+      border: 1px solid @btn-info-bgc;
+      color: @btn-info-color;
+    }
+    &-warning{
+      background: @btn-warning-bgc;
+      border: 1px solid @btn-warning-bgc;
+      color: @btn-warning-color;
+    }
+    &-danger{
+      background: @btn-danger-bgc;
+      border: 1px solid @btn-danger-bgc;
+      color: @btn-danger-color;
+    }
+    &-disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    &-plain {
+      background-color: @button-plain-background-color;
+      &.lin-button{
+        &-default{
+          color: @btn-default-color;
+        }
+        &-primary{
+          color: @btn-primary-bgc;
+        }
+        &-success{
+          color: @btn-success-bgc;
+        }
+        &-info{
+          color: @btn-info-bgc;
+        }
+        &-warning{
+          color: @btn-warning-bgc;
+        }
+        &-danger{
+          color: @btn-danger-bgc;
+        }
+      }
+    }
+    &-shape{}
   }
 </style>
